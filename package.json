@@ -134,13 +134,8 @@
     "wiredep": "^4.0.0"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install",
-    "build": "gulp",
-    "serve": "gulp serve",
-    "serve:dist": "gulp serve:dist",
-    "test": "gulp test",
-    "test:auto": "gulp test:auto",
-    "bower": "bower"
+    "start": "node heroku-web.js",
+    "postinstall": "bower install && heroku:production"
   },
   "eslintConfig": {
     "globals": {
