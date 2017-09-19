@@ -11,6 +11,4 @@ var accessLogStream = fs.createWriteStream(__dirname + '/access.log', {flags: 'a
 app.use(morgan('combinedstream',accessLogStream));
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 app.use('/prices', proxy({target: 'http://www.pioneerinter.com/lista-de-precos/get?q=', changeOrigin: true}));
-app.listen(process.argv[2]);
-
-console.log('Server running at http://127.0.0.1:' + process.argv[2]);
+app.listen(process.env.PORT || 3000);
