@@ -135,7 +135,7 @@
   },
   "scripts": {
     "start": "node heroku-web.js",
-    "postinstall": "bower install && heroku:production"
+    "postinstall": "bower install && gulp heroku:production"
   },
   "eslintConfig": {
     "globals": {
