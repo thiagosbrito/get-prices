@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" id="demo_contained">
+      <div class="techs-container" style="margin-top: 90px">
+        <button class="btn btn-warning pull-left" ng-click="prices.GetPrices($event)">
+          <i class="fa fa-play-circle"></i>
+          Iniciar
+        </button>
+        <button class="btn btn-primary pull-right" ng-click="prices.DownloadFile('#prices-list-table')">
+          <i class="fa fa-download"></i>
+          download
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-12">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+      <table
+        datatable="ng"
+        dt-options="prices.dtOptions"
+        dt-column-defs="prices.dtColumnDefs"
+        id="prices-list-table"
+        class="row-border hover table table-bordered cb-data-table">
+        <thead>
+          <tr>
+            <th>Produto ID</th>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Valor em US$</th>
+            <!-- <th>Valor em R$</th> -->
+            <th>Meu Preço</th>
+            <th>Preço Promocional</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="p in prices.priceList">
+            <td>{{ p.id }}</td>
+            <td>{{ p.picture }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.category }}</td>
+            <td>{{ p.usvalue }}</td>
+            <!-- <td>{{ p.brvalue }}</td> -->
+            <td>{{ p.price }}</td>
+            <td>{{ p.promotionalPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Imagem</th>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Valor em US$</th>
+            <th>Valor em R$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="p in prices.priceList">
+            <td>
+              {{p[0]}}
+            </td>
+            <td>{{p[1]}}</td>
+            <td>{{p[2]}}</td>
+            <td>{{p[3]}}</td>
+            <td>{{p[4]}}</td>
+            <td>{{p[5]}}</td>
+          </tr>
+        </tbody>
+      </table> -->
+    </div>
+  </div>
+</div>
