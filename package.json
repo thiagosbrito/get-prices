@@ -51,7 +51,7 @@
     "wiredep": "^4.0.0"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install",
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
