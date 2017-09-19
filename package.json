@@ -51,6 +51,7 @@
     "wiredep": "^4.0.0"
   },
   "scripts": {
+    "preinstall":"npm install && bower install",
     "build": "gulp",
     "serve": "gulp serve",
     "serve:dist": "gulp serve:dist",
