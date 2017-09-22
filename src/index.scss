@@ -1,5 +1,6 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
-@import "../bower_components/font-awesome/scss/font-awesome";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import "../bower_components/font-awesome/scss/font-awesome.scss";
 
 html, body, #root {
   margin: 0;

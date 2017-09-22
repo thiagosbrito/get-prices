@@ -29,22 +29,35 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
   vm.priceList = [];
 
   var url = '/prices';
+
+  vm.GetSku = function (tamanho) {
+    var letras = 'ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz';
+    var aleatorio = '';
+    for (var i = 0; i < tamanho; i++) {
+        var rnum = Math.floor(Math.random() * letras.length);
+        aleatorio += letras.substring(rnum, rnum + 1);
+    }
+    return aleatorio;
+  }
+
   vm.GetPrices = function ($event) {
     $scope.contained_progressbar.start();
     var defer = $q.defer();
     $http.get(url).then(function(result) {
       angular.forEach(result.data.data, function (value) {
-        value = {
-          id: value[0],
-          picture: value[1],
-          name: value[2].replace(/<(?:.|\n)*?>/gm, ''),
-          category: value[3],
-          usvalue: value[4],
-          // brvalue: value[5],
-          price: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.69).toFixed(2),
-          promotionalPrice: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.03).toFixed(2)
+        data = {
+          sku: vm.GetSku(9).toUpperCase(),
+          tipo: 'sem-variacao',
+          nome: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.'),
+          ativo: 'N',
+          precoCusto: parseFloat(value[4].replace('US$ ','').replace(',','.')).toFixed(2),
+          precoCheio: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.69).toFixed(2),
+          precoPromocional: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.18).toFixed(2),
+          imagem: 'http://www.pioneerinter.com/img/uploads/1000x1000/products/' + value[1],
+          seoTagTitle: 'Bestway Online - Produtos Importados',
+          // seoTagDescription: "aliexpress,produtos importados dos estados unidos,produtos importados para revender,produtos importados da china,site de produtos importados baratos,comprar produtos importados do eua,sites de produtos importados,amazon produtos importados,lojas da china"
         };
-        vm.priceList.push(value);
+        data.imagem != 'http://www.pioneerinter.com/img/uploads/1000x1000/products/no/no-img.jpg' ? vm.priceList.push(data) : false
       })
       defer.resolve(vm.priceList)
     });
@@ -54,71 +67,10 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
 
   vm.dtOptions = DTOptionsBuilder.newOptions()
     .withPaginationType('full_numbers')
-    .withDisplayLength(100)
+    .withDisplayLength(10)
     .withBootstrap()
-    .withOption('processing', true)
-    .withTableTools('vendor/datatables-tabletools/swf/copy_csv_xls_pdf.swf')
-    .withTableToolsButtons([
-        'copy',
-        'print', {
-            'sExtends': 'collection',
-            'sButtonText': 'Save',
-            'aButtons': ['csv', 'xls', 'pdf']
-        }
-    ])
-    .withButtons([
-    	  {
-    		  extend:    'excel',
-    		  text:      '<i class="fa fa-file-text-o"></i> Excel',
-    		  titleAttr: 'Excel'
-    	  }
-      ]
-    );
+    .withOption('processing', true);
 
-  vm.dtColumns = [
-    DTColumnBuilder.newColumn('id').withTitle('Produto'),
-    DTColumnBuilder.newColumn('picture').withTitle('Imagem'),
-    DTColumnBuilder.newColumn('name').withTitle('Nome'),
-    DTColumnBuilder.newColumn('category').withTitle('Categoria'),
-    DTColumnBuilder.newColumn('usvalue').withTitle('Valor em US$'),
-    // DTColumnBuilder.newColumn('brvalue').withTitle('Valor em R$'),
-    DTColumnBuilder.newColumn('price').withTitle('Meu Preço'),
-    DTColumnBuilder.newColumn('promotionalPrice').withTitle('Meu Preço Promocional')
-  ];
-  // vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
-  //   var defer = $q.defer();
-  //   $http.get(url).then(function(result) {
-  //     angular.forEach(result.data.data, function (value) {
-  //       value = {
-  //         id: value[0],
-  //         picture: value[1],
-  //         name: value[2].replace(/<(?:.|\n)*?>/gm, ''),
-  //         category: value[3],
-  //         usvalue: value[4],
-  //         brvalue: value[5]
-  //       };
-  //       vm.priceList.push(value);
-  //     })
-  //     console.log(vm.priceList);
-  //     defer.resolve(vm.priceList)
-  //   });
-  //   return defer.promise;
-  // })
-  // .withPaginationType('full_numbers')
-  // .withDisplayLength(10)
-  // .withDOM('pitrfl')
-  // .withBootstrap()
-  // .withOption('processing', true);
-  //
-  // vm.dtColumns = [
-  //   DTColumnBuilder.newColumn('id').withTitle('Produto ID'),
-  //   DTColumnBuilder.newColumn('picture').withTitle('Imagem'),
-  //   DTColumnBuilder.newColumn('name').withTitle('Nome'),
-  //   DTColumnBuilder.newColumn('category').withTitle('Categoria'),
-  //   DTColumnBuilder.newColumn('usvalue').withTitle('Valor em US$'),
-  //   DTColumnBuilder.newColumn('brvalue').withTitle('Valor em R$')
-  //   // DTColumnBuilder.newColumn('lastName').withTitle('Last name').notVisible()
-  // ];
 
   vm.DownloadFile = function (tableId) {
     var exportHref = ExcelAPI.tableToExcel(tableId,'lista-de-precos.xlsx').then(

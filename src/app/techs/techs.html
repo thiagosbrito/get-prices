@@ -6,7 +6,22 @@
           <i class="fa fa-play-circle"></i>
           Iniciar
         </button>
-        <button class="btn btn-primary pull-right" ng-click="prices.DownloadFile('#prices-list-table')">
+        <button
+          class="btn btn-primary pull-right"
+          ng-json-export-excel
+          data="prices.priceList"
+          report-fields="{
+            sku: 'sku',
+            tipo: 'tipo',
+            nome: 'nome',
+            ativo: 'ativo',
+            precoCusto: 'preco-custo`',
+            precoCheio: 'preco-cheio',
+            precoPromocional: 'preco-promocional',
+            imagem: 'imagem-1',
+            seoTagTitle: 'seo-tag-title'
+          }"
+          filename="filename">
           <i class="fa fa-download"></i>
           download
         </button>
@@ -26,26 +41,30 @@
         class="row-border hover table table-bordered cb-data-table">
         <thead>
           <tr>
-            <th>Produto ID</th>
-            <th>Imagem</th>
-            <th>Nome</th>
-            <th>Categoria</th>
-            <th>Valor em US$</th>
-            <!-- <th>Valor em R$</th> -->
-            <th>Meu Preço</th>
-            <th>Preço Promocional</th>
+            <th>tipo</th>
+            <th>sku</th>
+            <th>nome</th>
+            <th>ativo</th>
+            <th>preco-custo</th>
+            <th>preco-cheio</th>
+            <th>preco-promocional</th>
+            <th>imagem-1</th>
+            <th>seo-tag-title</th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="p in prices.priceList">
-            <td>{{ p.id }}</td>
-            <td>{{ p.picture }}</td>
-            <td>{{ p.name }}</td>
-            <td>{{ p.category }}</td>
-            <td>{{ p.usvalue }}</td>
-            <!-- <td>{{ p.brvalue }}</td> -->
-            <td>{{ p.price }}</td>
-            <td>{{ p.promotionalPrice }}</td>
+            <td>{{ p.tipo }}</td>
+            <td>{{ p.sku }}</td>
+            <td>{{ p.ativo }}</td>
+            <td>{{ p.nome }}</td>
+            <td>{{ p.precoCusto | currency: 'US$'}}</td>
+            <td>{{ p.precoCheio | currency: 'R$'}}</td>
+            <td>{{ p.precoPromocional | currency: 'R$'}}</td>
+            <td>
+              <img ng-src="{{p.imagem}}" alt="" class="img-responsive">
+            </td>
+            <td>{{ p['seoTagTitle'] }}</td>
           </tr>
         </tbody>
       </table>

@@ -5,7 +5,8 @@ angular
     'datatables',
     'datatables.bootstrap',
     'datatables.tabletools',
-    'datatables.buttons'
+    'datatables.buttons',
+    'ngJsonExportExcel'
   ])
   .config(['$qProvider', function ($qProvider) {
     $qProvider.errorOnUnhandledRejections(false);
