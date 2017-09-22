@@ -11,6 +11,7 @@ const sourcemaps = require('gulp-sourcemaps');
 const uglifySaveLicense = require('uglify-save-license');
 const inject = require('gulp-inject');
 const ngAnnotate = require('gulp-ng-annotate');
+const $ = require('gulp-load-plugins')({lazy: true});
 
 const conf = require('../conf/gulp.conf');
 
@@ -30,6 +31,7 @@ function build() {
 
   return gulp.src(conf.path.tmp('/index.html'))
     .pipe(inject(partialsInjectFile, partialsInjectOptions))
+    .pipe($.replace('../bower_components/font-awesome/fonts', '../fonts'))
     .pipe(useref({}, lazypipe().pipe(sourcemaps.init, {loadMaps: true})))
     .pipe(jsFilter)
     .pipe(ngAnnotate())
