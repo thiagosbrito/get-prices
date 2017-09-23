@@ -39,22 +39,71 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
     }
     return aleatorio;
   }
+  {
 
+  }
   vm.GetPrices = function ($event) {
     $scope.contained_progressbar.start();
     var defer = $q.defer();
     $http.get(url).then(function(result) {
       angular.forEach(result.data.data, function (value) {
         data = {
-          sku: vm.GetSku(9).toUpperCase(),
-          tipo: 'sem-variacao',
+          id: "",
+          tipo: "sem-variacao",
+          skuPai: "",
+          sku: "",
+          ativo: "N",
+          usado: "N",
+          ncm: "",
+          gtin: "",
           nome: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.'),
-          ativo: 'N',
+          descricaoCompleta: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.'),
+          urlVideoYoutube: "",
+          estoqueGerenciado: "",
+          estoqueQuantidade: "",
+          estoqueSituacaoEmEstoque: "",
+          estoqueSituacaoSemEstoque: "",
+          precoSobConsulta: "",
           precoCusto: parseFloat(value[4].replace('US$ ','').replace(',','.')).toFixed(2),
           precoCheio: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.69).toFixed(2),
           precoPromocional: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.18).toFixed(2),
-          imagem: 'http://www.pioneerinter.com/img/uploads/1000x1000/products/' + value[1],
+          marca: "",
+          pesoEmKg: "",
+          alturaEmCm: "",
+          larguraEmCm: "",
+          comprimentoEmCm: "",
+          categoriaNomeNivel1: "",
+          categoriaNomeNivel2: "",
+          categoriaNomeNivel3: "",
+          categoriaNomeNivel4: "",
+          categoriaNomeNivel5: "",
+          imagem1: "http://www.pioneerinter.com/img/uploads/1000x1000/products/" + value[1],
+          imagem2: "",
+          imagem3: "",
+          imagem4: "",
+          imagem5: "",
+          gradeGenero: "",
+          gradeTamanhoDeAnelalianca: "",
+          gradeTamanhoDeCalca: "",
+          gradeTamanhoDeCamisacamiseta: "",
+          gradeTamanhoDeCapacete: "",
+          gradeTamanhoDeTenis: "",
+          gradeVoltagem: "",
+          gradeTamanhoJuvenilInfantil: "",
+          gradeProdutoComUmaCor: "",
+          gradeProdutoComDuasCores: "",
+          urlAntiga: "",
           seoTagTitle: 'Bestway Online - Produtos Importados',
+          seoTagDescription: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.')
+          // sku: vm.GetSku(9).toUpperCase(),
+          // tipo: 'sem-variacao',
+          // nome: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.'),
+          // ativo: 'N',
+          // precoCusto: parseFloat(value[4].replace('US$ ','').replace(',','.')).toFixed(2),
+          // precoCheio: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.69).toFixed(2),
+          // precoPromocional: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.18).toFixed(2),
+          // imagem: 'http://www.pioneerinter.com/img/uploads/1000x1000/products/' + value[1],
+          // seoTagTitle: 'Bestway Online - Produtos Importados'
           // seoTagDescription: "aliexpress,produtos importados dos estados unidos,produtos importados para revender,produtos importados da china,site de produtos importados baratos,comprar produtos importados do eua,sites de produtos importados,amazon produtos importados,lojas da china"
         };
         data.imagem != 'http://www.pioneerinter.com/img/uploads/1000x1000/products/no/no-img.jpg' ? vm.priceList.push(data) : false

@@ -10,15 +10,53 @@
           ng-json-export-excel
           data="prices.priceList"
           report-fields="{
-            sku: 'sku',
+            id: 'id',
             tipo: 'tipo',
-            nome: 'nome',
+            skuPai: 'sku-pai',
+            sku: 'sku',
             ativo: 'ativo',
-            precoCusto: 'preco-custo`',
+            usado: 'usado',
+            ncm: 'nvm',
+            gtin: 'gtin',
+            nome: 'nome',
+            descricaoCompleta: 'descricao-completa',
+            urlVideoYoutube: 'url-video-youtube',
+            estoqueGerenciado: 'estoque-gerenciado',
+            estoqueQuantidade: 'estoque-quantidade',
+            estoqueSituacaoEmEstoque: 'estoque-situacao-em-estoque',
+            estoqueSituacaoSemEstoque: 'estoque-situacao-sem-estoque',
+            precoSobConsulta: 'preco-sob-consulta',
+            precoCusto: 'preco-custo',
             precoCheio: 'preco-cheio',
             precoPromocional: 'preco-promocional',
-            imagem: 'imagem-1',
-            seoTagTitle: 'seo-tag-title'
+            marca: 'marca',
+            pesoEmKg: 'peso-em-kg',
+            alturaEmCm: 'altura-em-cm',
+            larguraEmCm: 'largura-em-cm',
+            comprimentoEmCm: 'comprimento-em-cm',
+            categoriaNomeNivel1: 'categoria-nome-nivel-1',
+            categoriaNomeNivel2: 'categoria-nome-nivel-2',
+            categoriaNomeNivel3: 'categoria-nome-nivel-3',
+            categoriaNomeNivel4: 'categoria-nome-nivel-4',
+            categoriaNomeNivel5: 'categoria-nome-nivel-5',
+            imagem1: 'imagem-1',
+            imagem2: 'imagem-2',
+            imagem3: 'imagem-3',
+            imagem4: 'imagem-4',
+            imagem5: 'imagem-5',
+            gradeGenero: 'grade-genero',
+            gradeTamanhoDeAnelalianca: 'grade-tamanho-de-anelalianca',
+            gradeTamanhoDeCalca: 'grade-tamanho-de-calca',
+            gradeTamanhoDeCamisacamiseta: 'grade-tamanho-de-camisacamiseta',
+            gradeTamanhoDeCapacete: 'grade-tamanho-de-capacete',
+            gradeTamanhoDeTenis: 'grade-tamanho-de-tenis',
+            gradeVoltagem: 'grade-voltagem',
+            gradeTamanhoJuvenilInfantil: 'grade-tamanho-juvenil-infantil',
+            gradeProdutoComUmaCor: 'grade-produto-com-uma-cor',
+            gradeProdutoComDuasCores: 'grade-produto-com-duas-cores',
+            urlAntiga: 'url-antiga',
+            seoTagTitle: 'seo-tag-title',
+            seoTagDescription: 'seo-tag-description'
           }"
           filename="filename">
           Download
@@ -60,7 +98,7 @@
             <td>{{ p.precoCheio | currency: 'R$'}}</td>
             <td>{{ p.precoPromocional | currency: 'R$'}}</td>
             <td>
-              <img ng-src="{{p.imagem}}" alt="" class="img-responsive">
+              <img ng-src="{{p.imagem1}}" alt="" class="img-responsive">
             </td>
             <td>{{ p['seoTagTitle'] }}</td>
           </tr>
