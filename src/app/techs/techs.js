@@ -51,7 +51,7 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           id: "",
           tipo: "sem-variacao",
           skuPai: "",
-          sku: "",
+          sku: vm.GetSku(9).toUpperCase(),
           ativo: "N",
           usado: "N",
           ncm: "",
@@ -106,7 +106,7 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           // seoTagTitle: 'Bestway Online - Produtos Importados'
           // seoTagDescription: "aliexpress,produtos importados dos estados unidos,produtos importados para revender,produtos importados da china,site de produtos importados baratos,comprar produtos importados do eua,sites de produtos importados,amazon produtos importados,lojas da china"
         };
-        data.imagem != 'http://www.pioneerinter.com/img/uploads/1000x1000/products/no/no-img.jpg' ? vm.priceList.push(data) : false
+        data.imagem1 != 'http://www.pioneerinter.com/img/uploads/1000x1000/products/no/no-img.jpg' ? vm.priceList.push(data) : false
       })
       defer.resolve(vm.priceList)
     });
