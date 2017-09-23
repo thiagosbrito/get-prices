@@ -72,7 +72,7 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           alturaEmCm: "",
           larguraEmCm: "",
           comprimentoEmCm: "",
-          categoriaNomeNivel1: "",
+          categoriaNomeNivel1: value[3],
           categoriaNomeNivel2: "",
           categoriaNomeNivel3: "",
           categoriaNomeNivel4: "",
