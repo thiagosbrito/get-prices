@@ -78,7 +78,7 @@
         <thead>
           <tr>
             <th>tipo</th>
-            <th>sku</th>
+            
             <th>nome</th>
             <th>ativo</th>
             <th>preco-custo</th>
@@ -92,9 +92,9 @@
         <tbody>
           <tr ng-repeat="p in prices.priceList">
             <td>{{ p.tipo }}</td>
-            <td>{{ p.sku }}</td>
-            <td>{{ p.ativo }}</td>
+
             <td>{{ p.nome }}</td>
+            <td>{{ p.ativo }}</td>
             <td>{{ p.precoCusto | currency: 'US$'}}</td>
             <td>{{ p.precoCheio | currency: 'R$'}}</td>
             <td>{{ p.precoPromocional | currency: 'R$'}}</td>

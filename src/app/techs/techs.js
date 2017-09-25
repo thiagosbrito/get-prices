@@ -51,7 +51,7 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           id: "",
           tipo: "sem-variacao",
           skuPai: "",
-          sku: vm.GetSku(9).toUpperCase(),
+          sku: "",
           ativo: "N",
           usado: "N",
           ncm: "",
@@ -95,16 +95,6 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           urlAntiga: "",
           seoTagTitle: 'Bestway Online - Produtos Importados',
           seoTagDescription: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.')
-          // sku: vm.GetSku(9).toUpperCase(),
-          // tipo: 'sem-variacao',
-          // nome: value[2].replace(/<(?:.|\n)*?>/gm, '').replace(',','.'),
-          // ativo: 'N',
-          // precoCusto: parseFloat(value[4].replace('US$ ','').replace(',','.')).toFixed(2),
-          // precoCheio: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.69).toFixed(2),
-          // precoPromocional: parseFloat(value[4].replace('US$ ','').replace(',','.') * 5.18).toFixed(2),
-          // imagem: 'http://www.pioneerinter.com/img/uploads/1000x1000/products/' + value[1],
-          // seoTagTitle: 'Bestway Online - Produtos Importados'
-          // seoTagDescription: "aliexpress,produtos importados dos estados unidos,produtos importados para revender,produtos importados da china,site de produtos importados baratos,comprar produtos importados do eua,sites de produtos importados,amazon produtos importados,lojas da china"
         };
         data.imagem1 != 'http://www.pioneerinter.com/img/uploads/1000x1000/products/no/no-img.jpg' ? vm.priceList.push(data) : false
       })
