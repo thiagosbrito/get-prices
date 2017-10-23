@@ -49,7 +49,7 @@ function TechsController($http, $scope, ngProgressFactory, $sce, DTOptionsBuilde
           id: "",
           tipo: "sem-variacao",
           skuPai: "",
-          sku: vm.GetSku(),
+          sku: vm.GetSku(9).toUpperCase(),
           ativo: "N",
           usado: "N",
           ncm: "",
